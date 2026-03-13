@@ -1,8 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -10,4 +8,48 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+model User {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  password      String
+  walletAddress String
+  createdAt     DateTime @default(now())
+
+  startups    Startup[]
+  investments Investment[]
+}
+
+model Startup {
+  id            String   @id @default(uuid())
+  name          String
+  description   String
+  founderId     String
+  valuation     Int      @default(20000)
+  fundingOpenAt DateTime
+  totalRaised   Float    @default(0)
+  createdAt     DateTime @default(now())
+
+  founder     User         @relation(fields: [founderId], references: [id])
+  investments Investment[]
+
+  @@index([founderId])
+}
+
+model Investment {
+  id         String   @id @default(uuid())
+  startupId  String
+  investorId String
+  amountSol  Float
+  stake      Float
+  txHash     String
+  createdAt  DateTime @default(now())
+
+  startup  Startup @relation(fields: [startupId], references: [id])
+  investor User    @relation(fields: [investorId], references: [id])
+
+  @@index([startupId])
+  @@index([investorId])
 }
