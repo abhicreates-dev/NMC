@@ -1,0 +1,22 @@
+# dependencies
+node_modules
+.pnpm-store
+
+# environment variables
+.env
+.env.local
+
+# build output
+dist
+build
+
+# logs
+logs
+*.log
+
+# OS files
+.DS_Store
+
+# editor
+.vscode
+.idea

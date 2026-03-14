@@ -215,24 +215,24 @@ export function StartupDetail() {
     <div>
       <Link
         to="/startups"
-        className="mb-4 inline-block text-slate-400 hover:text-white"
+        className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors"
       >
         ← Back to startups
       </Link>
-      <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-6">
+      <div className="rounded-xl border border-white/5 bg-[#111] p-6 sm:p-8">
         <h1 className="text-2xl font-bold">{startup.name}</h1>
         <p className="mt-2 text-slate-400">{startup.description}</p>
         <p className="mt-2 text-sm text-slate-500">
           by {startup.founder.name}
         </p>
 
-        <div className="mt-4 flex items-center gap-4 text-sm">
-          <span className="text-slate-500">
+        <div className="mt-8 flex items-center gap-4 text-sm">
+          <span className="text-slate-400">
             Valuation: ${startup.valuation.toLocaleString()}
           </span>
           <span
             className={
-              isFundingOpen ? "text-emerald-400" : "text-amber-400"
+              isFundingOpen ? "text-[#1b7f53] font-medium" : "text-amber-500 font-medium"
             }
           >
             {countdown}
@@ -240,25 +240,25 @@ export function StartupDetail() {
         </div>
 
         <div className="mt-4">
-          <div className="h-3 overflow-hidden rounded-full bg-slate-800">
+          <div className="h-3 overflow-hidden rounded-full border border-white/5 bg-[#1a1a1a]">
             <div
-              className="h-full rounded-full bg-emerald-500 transition-all"
+              className="h-full rounded-full bg-[#1b7f53] transition-all"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-slate-500">
             ${startup.totalRaised.toFixed(0)} / ${VALUATION.toLocaleString()} (
             {progress.toFixed(0)}%)
           </p>
         </div>
 
         {isFundingOpen && user && (
-          <div className="mt-6 rounded-lg border border-slate-700 bg-slate-800/50 p-4">
-            <h3 className="font-medium">Invest with SOL</h3>
-            <p className="mt-1 text-xs text-slate-500">
+          <div className="mt-8 rounded-xl border border-white/5 bg-[#1a1a1a] p-5 sm:p-6">
+            <h3 className="font-semibold text-white">Invest with SOL</h3>
+            <p className="mt-1.5 text-xs text-slate-500 font-medium">
               1 SOL = $100 • Stake = (amount × 100) / $20,000
             </p>
-            <div className="mt-3 flex flex-wrap items-center gap-2">
+            <div className="mt-4 flex flex-wrap items-center gap-3">
               <input
                 type="number"
                 step="0.01"
@@ -266,12 +266,12 @@ export function StartupDetail() {
                 placeholder="Amount in SOL"
                 value={investAmount}
                 onChange={(e) => setInvestAmount(e.target.value)}
-                className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="w-48 rounded-lg border border-white/10 bg-[#111] px-4 py-2.5 text-sm text-slate-100 placeholder-[#666] focus:border-[#444] focus:bg-[#1a1a1a] focus:outline-none focus:ring-1 focus:ring-[#444] transition-all"
               />
               <button
                 onClick={handleInvestClick}
                 disabled={investing}
-                className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium hover:bg-emerald-500 disabled:opacity-50"
+                className="rounded-lg bg-white px-6 py-2.5 text-sm font-medium text-black hover:bg-slate-200 disabled:opacity-50 transition-colors shadow-lg"
               >
                 {investing ? "Processing…" : "Invest"}
               </button>
@@ -284,19 +284,19 @@ export function StartupDetail() {
       </div>
 
       {startup.investments.length > 0 && (
-        <div className="mt-6">
-          <h2 className="mb-3 font-semibold">Investors</h2>
-          <ul className="space-y-2">
+        <div className="mt-10">
+          <h2 className="mb-4 text-sm font-bold text-white tracking-wide">Investors</h2>
+          <ul className="space-y-3">
             {startup.investments.map((inv) => (
               <li
                 key={inv.id}
-                className="rounded-lg border border-slate-800 bg-slate-900/30 px-4 py-2 text-sm"
+                className="flex items-center rounded-lg border border-white/5 bg-[#111] px-5 py-3.5 text-sm transition-colors hover:border-white/10"
               >
-                <span className="text-slate-300">{inv.investor.name}</span>
-                <span className="mx-2 text-slate-600">•</span>
-                <span className="text-emerald-400">{inv.amountSol} SOL</span>
-                <span className="mx-2 text-slate-600">•</span>
-                <span className="text-slate-400">
+                <span className="font-medium text-slate-300">{inv.investor.name}</span>
+                <span className="mx-3 text-slate-700">•</span>
+                <span className="font-semibold text-[#1b7f53]">{inv.amountSol} SOL</span>
+                <span className="mx-3 text-slate-700">•</span>
+                <span className="text-slate-500 font-medium">
                   {(inv.stake * 100).toFixed(2)}% stake
                 </span>
               </li>

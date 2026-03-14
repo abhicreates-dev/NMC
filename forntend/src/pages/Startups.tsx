@@ -45,7 +45,7 @@ function StartupCard({ s }: { s: StartupItem }) {
   return (
     <Link
       to={`/startup/${s.id}`}
-      className="block rounded-xl border border-slate-800 bg-slate-900/50 p-5 transition hover:border-slate-700 hover:bg-slate-900"
+      className="block rounded-xl border border-white/5 bg-[#111] p-6 transition-all hover:border-white/10 hover:shadow-lg hover:shadow-[#1b7f53]/5 group relative overflow-hidden"
     >
       <h3 className="text-lg font-semibold text-white">{s.name}</h3>
       <p className="mt-1 line-clamp-2 text-slate-400">{s.description}</p>
@@ -54,17 +54,17 @@ function StartupCard({ s }: { s: StartupItem }) {
         <span
           className={
             isOpen
-              ? "text-emerald-400"
-              : "text-amber-400"
+              ? "text-[#1b7f53] font-medium"
+              : "text-amber-500 font-medium"
           }
         >
           {countdown}
         </span>
       </div>
-      <div className="mt-3">
-        <div className="h-2 overflow-hidden rounded-full bg-slate-800">
+      <div className="mt-4">
+        <div className="h-2 overflow-hidden rounded-full border border-white/5 bg-[#1a1a1a]">
           <div
-            className="h-full rounded-full bg-emerald-500 transition-all"
+            className="h-full rounded-full bg-[#1b7f53] transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -103,17 +103,19 @@ export function Startups() {
   }
 
   return (
-    <div>
-      <h1 className="mb-6 text-2xl font-bold">Startups</h1>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="w-full">
+      <h1 className="mb-8 text-2xl font-bold text-white tracking-tight">Recent Startups</h1>
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {list.map((s) => (
           <StartupCard key={s.id} s={s} />
         ))}
       </div>
       {list.length === 0 && (
-        <p className="rounded-lg border border-dashed border-slate-700 p-8 text-center text-slate-500">
-          No startups yet. Be the first to submit one.
-        </p>
+        <div className="rounded-xl border border-dashed border-white/10 bg-[#111] p-12 text-center">
+          <p className="text-slate-500">
+            No startups yet. Be the first to build one.
+          </p>
+        </div>
       )}
     </div>
   );
