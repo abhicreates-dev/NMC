@@ -34,7 +34,7 @@ The product is **crowdfunding-first**: listing, discovery, SOL payments, and por
 |--------|-------------|
 | **Public listing** | Founders add title, description, up to 4 categories (e.g. AI, SaaS, FinTech, Web3), and optional LinkedIn / X / GitHub links. |
 | **Fixed target** | Every startup has a **$20,000** funding goal. Progress is shown as a percentage. |
-| **Solana payments** | Backers connect a wallet (Phantom, Solflare, Coinbase, etc.), send SOL to the platform escrow. Backend verifies the transaction and records stake (1 SOL = $100; stake = investment USD / 20,000). |
+| **Solana payments** | Backers connect a wallet (Phantom, Solflare, Coinbase, etc.), send SOL to the platform escrow. Backend verifies the transaction and records stake (1 SOL = $100; stake = investment USD / 20,000). The sol comes to our platform then we verify and send to Founder |
 | **Funding window** | Funding opens **10 minutes** after a startup is submitted, then backers can invest until the target is reached. |
 | **Discoverable listings** | Browse all startups with live funding progress and a transparent list of investors. |
 | **Portfolio** | Logged-in users see their created startups and investments in one place. |
