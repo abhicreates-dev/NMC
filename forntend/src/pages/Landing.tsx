@@ -197,7 +197,7 @@ function Navbar() {
       </a>
 
       <div className="nav-center" style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", display: "flex", gap: 28, alignItems: "center" }}>
-        {[["#features", "Product", true], ["#hiw", "How it Works", false], ["#marketplace", "Marketplace", false], ["#vision", "Vision", false], ["#", "Docs", false]].map(([href, label, hasChev]) => (
+        {([["#features", "Product", true], ["#hiw", "How it Works", false], ["#marketplace", "Marketplace", false], ["#vision", "Vision", false], ["#", "Docs", false]] as [string, string, boolean][]).map(([href, label, hasChev]) => (
           <a key={label} href={href} style={{ textDecoration: "none", fontSize: "0.8125rem", color: "#6b756b", transition: "color 0.18s", display: "flex", alignItems: "center", gap: 3, whiteSpace: "nowrap" }}
             onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = "#e8ece8"}
             onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = "#6b756b"}>
