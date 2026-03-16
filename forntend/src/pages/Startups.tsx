@@ -64,7 +64,7 @@ function StartupCard({ s }: { s: StartupItem }) {
 
   return (
     <Link
-      to={`/startup/${s.id}`}
+      to={`/app/startup/${s.id}`}
       className="block rounded-xl border border-white/5 bg-[#101010] p-6 transition-all hover:border-white/10 hover:shadow-lg hover:shadow-[#1b7f53]/5 group relative overflow-hidden"
       data-testid="startup-card"
     >
