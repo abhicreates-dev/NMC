@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const FontLoader = () => (
   <style>{`
@@ -105,11 +107,11 @@ function useReveal() {
 function useTyping(elRef: React.RefObject<HTMLSpanElement | null>) {
   useEffect(() => {
     const phrases = [
-      "Can you launch this startup idea",
-      "Build a SaaS in 72 hours",
-      "Run market analysis on fintech",
-      "Deploy AI agents for growth",
-      "Can you fix this proj",
+      "Submit my AI startup idea",
+      "Back a student founder",
+      "Raise $20k with Solana",
+      "Discover projects to invest in",
+      "List my venture",
     ];
     let pi = 0, ci = 0, deleting = false;
     let timer: ReturnType<typeof setTimeout>;
@@ -172,6 +174,7 @@ function AnnounceBar() {
 }
 
 function Navbar() {
+  const { user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 10);
@@ -207,14 +210,19 @@ function Navbar() {
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <a href="/login" className="btn-sign-in" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.8rem", color: "#e8ece8", background: "transparent", border: "none", cursor: "pointer", padding: "6px 14px", transition: "color 0.18s", textDecoration: "none" }}>Sign In</a>
-        <a href="/signup" className="btn-get-started" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.8rem", fontWeight: 500, color: "#0d1a10", background: "#f5f8f5", border: "1px solid rgba(255,255,255,0.9)", borderRadius: 5, padding: "7px 16px", cursor: "pointer", textDecoration: "none", transition: "all 0.18s", whiteSpace: "nowrap" }}>Launch AI Startup</a>
+        <Link to="/login" className="btn-sign-in" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.8rem", color: "#e8ece8", background: "transparent", border: "none", cursor: "pointer", padding: "6px 14px", transition: "color 0.18s", textDecoration: "none" }}>Sign In</Link>
+        {user ? (
+          <Link to="/app/build" className="btn-get-started" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.8rem", fontWeight: 500, color: "#0d1a10", background: "#f5f8f5", border: "1px solid rgba(255,255,255,0.9)", borderRadius: 5, padding: "7px 16px", cursor: "pointer", textDecoration: "none", transition: "all 0.18s", whiteSpace: "nowrap" }}>List your startup</Link>
+        ) : (
+          <Link to="/signup" className="btn-get-started" style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.8rem", fontWeight: 500, color: "#0d1a10", background: "#f5f8f5", border: "1px solid rgba(255,255,255,0.9)", borderRadius: 5, padding: "7px 16px", cursor: "pointer", textDecoration: "none", transition: "all 0.18s", whiteSpace: "nowrap" }}>List your startup</Link>
+        )}
       </div>
     </nav>
   );
 }
 
 function HeroSection() {
+  const { user } = useAuth();
   const typingRef = useRef<HTMLSpanElement>(null);
   useTyping(typingRef);
 
@@ -222,26 +230,34 @@ function HeroSection() {
     <div style={{ position: "relative", zIndex: 1, maxWidth: 1380, margin: "0 auto", padding: "0 48px", fontFamily: "'IBM Plex Mono', monospace" }}>
       <div style={{ paddingTop: 52, paddingBottom: 32 }}>
         <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(4.5rem, 8.5vw, 9.5rem)", lineHeight: 0.9, letterSpacing: "0.01em", color: "#f5f8f5", maxWidth: 820 }}>
-          <span style={{ color: "#4ade80" }}>Startups</span> that build
-          <span style={{ color: "#4ade80" }}> themselves.</span>
+          <span style={{ color: "#4ade80" }}>Crowdfunding</span> for new age <span style={{ color: "#4ade80" }}>Startups</span><br />
         </h1>
       </div>
 
       <div className="hero-cols" style={{ display: "grid", gridTemplateColumns: "520px 1fr", gap: "3rem", alignItems: "start", paddingBottom: "4rem" }}>
         <div>
           <div style={{ display: "inline-block", background: "rgba(74,222,128,0.2)", borderLeft: "2px solid #4ade80", padding: "4px 12px", fontSize: "0.8125rem", color: "#4ade80", fontWeight: 400, marginBottom: 12, letterSpacing: "0.01em" }}>
-            The autonomous startup economy.
+            Solana crowdfunding for student & first-time founders.
           </div>
           <p style={{ fontSize: "0.8125rem", fontWeight: 300, color: "#6b756b", lineHeight: 1.8, maxWidth: 420, marginBottom: 28 }}>
-            Autonomous AI agents create, launch, and scale digital companies while communities invest and share profits.
+            List your AI startup idea with title, description and social links. Raise a fixed $20,000 target from early backers — pay with SOL, transparent progress and investor lists.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 10, maxWidth: 440 }}>
-            <a href="#marketplace" className="btn-primary-hero" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "15px 18px", background: "#4ade80", border: "1px solid #4ade80", borderRadius: 3, color: "#0d1a10", fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none", cursor: "pointer", transition: "all 0.18s", letterSpacing: "0.01em" }}>
-              Explore Marketplace
-              <span style={{ width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", background: "rgba(0,0,0,0.15)" }}>
-                <ArrowRight />
-              </span>
-            </a>
+            {user ? (
+              <Link to="/app/startups" className="btn-primary-hero" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "15px 18px", background: "#4ade80", border: "1px solid #4ade80", borderRadius: 3, color: "#0d1a10", fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none", cursor: "pointer", transition: "all 0.18s", letterSpacing: "0.01em" }}>
+                Explore Marketplace
+                <span style={{ width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", background: "rgba(0,0,0,0.15)" }}>
+                  <ArrowRight />
+                </span>
+              </Link>
+            ) : (
+              <Link to="/signup" className="btn-primary-hero" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "15px 18px", background: "#4ade80", border: "1px solid #4ade80", borderRadius: 3, color: "#0d1a10", fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none", cursor: "pointer", transition: "all 0.18s", letterSpacing: "0.01em" }}>
+                Explore Marketplace
+                <span style={{ width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", background: "rgba(0,0,0,0.15)" }}>
+                  <ArrowRight />
+                </span>
+              </Link>
+            )}
             <a href="#hiw" className="btn-secondary-hero" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "15px 18px", background: "transparent", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 3, color: "#e8ece8", fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.875rem", fontWeight: 400, textDecoration: "none", cursor: "pointer", transition: "all 0.18s" }}>
               See How It Works
               <span style={{ width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", background: "rgba(0,0,0,0.15)" }}>
@@ -287,7 +303,7 @@ function HeroSection() {
               </div>
               <div style={{ fontSize: "0.7rem", color: "#e8ece8", fontWeight: 500, display: "flex", alignItems: "center", gap: 5, marginLeft: 8 }}>
                 <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><circle cx={12} cy={12} r={3} /><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4" /></svg>
-                AI Agent Console
+                Startup Dashboard
               </div>
               <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
                 <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#4a524a" strokeWidth={2}><path d="M18 8h1a4 4 0 0 1 0 8h-1" /><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" /><line x1={6} y1={1} x2={6} y2={4} /><line x1={10} y1={1} x2={10} y2={4} /><line x1={14} y1={1} x2={14} y2={4} /></svg>
@@ -295,22 +311,22 @@ function HeroSection() {
               </div>
             </div>
             <div style={{ display: "flex", gap: 2, padding: "0 10px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-              {["Overview", "Agents", "Logs"].map((tab, i) => (
+              {["Overview", "Startups", "Portfolio"].map((tab, i) => (
                 <div key={tab} style={{ fontSize: "0.62rem", color: i === 0 ? "#4ade80" : "#4a524a", padding: "6px 12px", borderBottom: i === 0 ? "1px solid #4ade80" : "none", marginBottom: i === 0 ? -1 : 0, cursor: "pointer" }}>{tab}</div>
               ))}
             </div>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "0.62rem", color: "#6b756b", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 4, padding: "3px 8px", background: "rgba(255,255,255,0.04)", margin: "6px 10px", width: "fit-content" }}>
               <svg width={9} height={9} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}><line x1={12} y1={5} x2={12} y2={19} /><line x1={5} y1={12} x2={19} y2={12} /></svg>
-              New Task
+              New startup
             </div>
             <div style={{ padding: "0 10px 10px", display: "flex", flexDirection: "column", gap: 5 }}>
               <div style={{ padding: "8px 10px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 4 }}>
-                <div style={{ fontSize: "0.6rem", color: "#4ade80", marginBottom: 3 }}>✓ Verify product-market fit</div>
-                <div style={{ fontSize: "0.58rem", color: "#4a524a" }}>CEO Agent · 2min ago</div>
+                <div style={{ fontSize: "0.6rem", color: "#4ade80", marginBottom: 3 }}>✓ Funding open</div>
+                <div style={{ fontSize: "0.58rem", color: "#4a524a" }}>2 backers · 45% raised</div>
               </div>
               <div style={{ padding: "8px 10px", background: "rgba(74,222,128,0.04)", border: "1px solid rgba(74,222,128,0.15)", borderRadius: 4 }}>
-                <div style={{ fontSize: "0.6rem", color: "#e8ece8", marginBottom: 3 }}>→ Scaffold MVP architecture</div>
-                <div style={{ fontSize: "0.58rem", color: "#4a524a" }}>Dev Agent · running...</div>
+                <div style={{ fontSize: "0.6rem", color: "#e8ece8", marginBottom: 3 }}>→ Invest with SOL</div>
+                <div style={{ fontSize: "0.58rem", color: "#4a524a" }}>Target $20,000</div>
               </div>
             </div>
           </div>
@@ -318,12 +334,12 @@ function HeroSection() {
           <div style={{ position: "absolute", bottom: 175, left: "5%", right: "5%", background: "rgba(26,29,26,0.9)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 8, padding: "12px 14px", zIndex: 4, backdropFilter: "blur(8px)" }}>
             <div style={{ fontSize: "0.62rem", color: "#4a524a", marginBottom: 4, display: "flex", alignItems: "center", gap: 5 }}>
               <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><circle cx={12} cy={12} r={10} /><polyline points="12 6 12 12 16 14" /></svg>
-              <span style={{ color: "#6b756b" }}>Thought for 1 second</span>
+              <span style={{ color: "#6b756b" }}>Funding opens 10 min after submit</span>
             </div>
-            <p style={{ fontSize: "0.65rem", color: "#6b756b", lineHeight: 1.6, marginBottom: 6 }}>I need to validate the market first. Let me run demand analysis and generate a business summary.</p>
+            <p style={{ fontSize: "0.65rem", color: "#6b756b", lineHeight: 1.6, marginBottom: 6 }}>Submit your idea with title, description and social links. Backers invest with SOL toward a $20,000 target. Clear progress and investor lists.</p>
             <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 4, padding: "5px 10px", fontSize: "0.62rem", color: "#4ade80", display: "flex", alignItems: "center", gap: 5 }}>
               <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><polyline points="4 17 10 11 4 5" /><line x1={12} y1={19} x2={20} y2={19} /></svg>
-              cd /workspace/no-man-co &amp;&amp; agent run --mode=ceo --task=validate
+              Create startup → Back with SOL → Track stake
             </div>
           </div>
 
@@ -375,12 +391,12 @@ function HeroSection() {
               ))}
             </div>
             <div style={{ padding: "14px 14px 10px" }}>
-              <div style={{ fontSize: "0.58rem", color: "#4ade80", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 8 }}>New Ventures Live</div>
-              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.5rem", color: "#f5f8f5", lineHeight: 1.05, marginBottom: 4 }}>Launch your<br /><span style={{ color: "#4ade80" }}>AI economy.</span></div>
-              <p style={{ fontSize: "0.62rem", color: "#6b756b", lineHeight: 1.5, marginBottom: 12 }}>The all-in-one platform where AI builds, runs, and scales startups while you earn.</p>
+              <div style={{ fontSize: "0.58rem", color: "#4ade80", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 8 }}>Live campaigns</div>
+              <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.5rem", color: "#f5f8f5", lineHeight: 1.05, marginBottom: 4 }}>Crowdfund<br /><span style={{ color: "#4ade80" }}>AI startups.</span></div>
+              <p style={{ fontSize: "0.62rem", color: "#6b756b", lineHeight: 1.5, marginBottom: 12 }}>List your idea or back student and first-time founders. $20k target per project, pay with SOL.</p>
               <div style={{ display: "flex", gap: 6 }}>
-                <button style={{ fontSize: "0.62rem", background: "#4ade80", color: "#0d1a10", padding: "5px 10px", borderRadius: 3, fontWeight: 500, border: "none", cursor: "pointer", fontFamily: "'IBM Plex Mono', monospace" }}>Join Early →</button>
-                <button style={{ fontSize: "0.62rem", background: "transparent", color: "#6b756b", padding: "5px 10px", borderRadius: 3, border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer", fontFamily: "'IBM Plex Mono', monospace" }}>View Demo</button>
+                <button style={{ fontSize: "0.62rem", background: "#4ade80", color: "#0d1a10", padding: "5px 10px", borderRadius: 3, fontWeight: 500, border: "none", cursor: "pointer", fontFamily: "'IBM Plex Mono', monospace" }}>List startup →</button>
+                <button style={{ fontSize: "0.62rem", background: "transparent", color: "#6b756b", padding: "5px 10px", borderRadius: 3, border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer", fontFamily: "'IBM Plex Mono', monospace" }}>Browse</button>
               </div>
             </div>
           </div>
@@ -406,7 +422,7 @@ function TrustSection() {
       `}</style>
 
       <div style={{ padding: "32px 48px 0", maxWidth: 1380, margin: "0 auto", fontSize: "0.8125rem", color: "#6b756b", letterSpacing: "0.01em" }}>
-        // Trusted by <span style={{ color: "#4ade80" }}>autonomous investment communities</span> worldwide.
+        // For <span style={{ color: "#4ade80" }}>students, first-time founders & early backers</span>.
       </div>
 
       <div style={{ position: "relative", marginTop: 20, borderTop: "1px solid rgba(255,255,255,0.08)", borderBottom: "1px solid rgba(255,255,255,0.08)", overflow: "hidden" }}>
@@ -424,10 +440,10 @@ function TrustSection() {
 
 function FeaturesSection() {
   const features = [
-    { num: "01 / Strategy", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5M2 12l10 5 10-5" /></svg>, title: "AI CEO Decision Engine", desc: "A sovereign reasoning model that formulates strategy, allocates resources, and makes high-stakes decisions autonomously — with full accountability trails.", badge: "⬡ Always Active" },
-    { num: "02 / Engineering", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><rect x={2} y={3} width={20} height={14} rx={2} /><path d="M8 21h8M12 17v4" /></svg>, title: "Autonomous Product Development", desc: "From architecture to deployment, AI developer agents design, code, test, and iterate on digital products with zero human input — shipping continuously.", badge: "⬡ Self-Deploying" },
-    { num: "03 / Growth", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>, title: "Self-Optimizing Marketing Agents", desc: "Growth agents run experiments across channels, analyze real-time signals, and rewrite campaigns — compounding traction without a human growth team.", badge: "⬡ Growth Loop" },
-    { num: "04 / Capital", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><line x1={12} y1={1} x2={12} y2={23} /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>, title: "Community Investment Marketplace", desc: "Stake in AI-built ventures, track real-time KPIs, and receive automated profit distributions — ownership without operations.", badge: "⬡ Earn Passively" },
+    { num: "01 / List", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5M2 12l10 5 10-5" /></svg>, title: "Easy public listing", desc: "Submit your AI startup idea with title, description and social links. Zero-to-one founders get a simple flow to go live.", badge: "⬡ Founder-friendly" },
+    { num: "02 / Raise", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><rect x={2} y={3} width={20} height={14} rx={2} /><path d="M8 21h8M12 17v4" /></svg>, title: "Solana crowdfunding", desc: "Supporters contribute with SOL toward a uniform $20,000 target per project. Simple payments, no smart contracts.", badge: "⬡ $20k target" },
+    { num: "03 / Discover", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>, title: "Discoverable listings", desc: "Browse projects with funding progress and transparent investor lists. Attract early backers with clear, live metrics.", badge: "⬡ Transparent" },
+    { num: "04 / Invest", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><line x1={12} y1={1} x2={12} y2={23} /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>, title: "Create, invest, portfolio", desc: "Authenticated features for founders and investors: create startups, invest with SOL, view your personal portfolio.", badge: "⬡ Simple & resilient" },
   ];
 
   return (
@@ -437,10 +453,10 @@ function FeaturesSection() {
           <span style={{ width: 16, height: 1, background: "#4ade80", display: "inline-block" }} />Core Platform
         </div>
         <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(3rem,5vw,5.5rem)", lineHeight: 0.92, letterSpacing: "0.01em", color: "#f5f8f5", marginBottom: "1rem" }}>
-          Built Different.<br /><span style={{ color: "#4ade80" }}>By Design.</span>
+          Built for <span style={{ color: "#4ade80" }}>student & first-time founders.</span>
         </h2>
         <p style={{ fontSize: "0.8125rem", fontWeight: 300, color: "#6b756b", lineHeight: 1.8, maxWidth: 460, marginBottom: "3.5rem" }}>
-          Every layer runs on intelligent, adaptive AI agents that never sleep, never guess, and never stop shipping.
+          Clear loading states, validation and wallet-connect prompts. List ideas, back with SOL, track progress — no complexity.
         </p>
       </div>
       <div className="feat-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", border: "1px solid rgba(255,255,255,0.08)" }}>
@@ -460,10 +476,10 @@ function FeaturesSection() {
 
 function HowItWorksSection() {
   const steps = [
-    { n: "01", h: "AI Validates Startup Ideas", p: "Market agents assess demand signals, competitive landscapes, and monetization viability before any resources are committed." },
-    { n: "02", h: "Agents Build & Launch Products", p: "Developer, design, and ops agents collaborate to ship functional digital products end-to-end, without oversight." },
-    { n: "03", h: "Products Enter the Marketplace", p: "Launched companies are listed with live metrics, growth trajectories, and investment terms for community review." },
-    { n: "04", h: "Community Earns from Growth", p: "Stakeholders receive automated distributions as AI agents continue scaling revenue — a perpetual yield engine." },
+    { n: "01", h: "Submit your startup idea", p: "Founders add title, description and social links. Easy public listing flow for zero-to-one founders." },
+    { n: "02", h: "Funding opens", p: "Funding opens 10 minutes after submission. Backers can then contribute with SOL toward the $20,000 target." },
+    { n: "03", h: "Discover & back projects", p: "Browse listings with funding progress and transparent investor lists. Connect wallet and invest with SOL." },
+    { n: "04", h: "Track your portfolio", p: "View your stakes and backed projects. Clear, simple — create startups, invest, or both." },
   ];
 
   return (
@@ -473,10 +489,10 @@ function HowItWorksSection() {
           <span style={{ width: 16, height: 1, background: "#4ade80", display: "inline-block" }} /> Process
         </div>
         <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(3rem,5vw,5.5rem)", lineHeight: 0.92, color: "#f5f8f5", marginBottom: "1rem" }}>
-          From Idea to<br /><span style={{ color: "#4ade80" }}>Economy.</span>
+          From idea to<br /><span style={{ color: "#4ade80" }}>backers.</span>
         </h2>
         <p style={{ fontSize: "0.8125rem", fontWeight: 300, color: "#6b756b", lineHeight: 1.8, maxWidth: 460, marginBottom: 0 }}>
-          A fully closed-loop system where AI handles every stage — validation to profit distribution.
+          List your AI startup, raise a $20,000 target from early backers, and keep everything transparent.
         </p>
       </div>
       <div className="hiw-row" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", border: "1px solid rgba(255,255,255,0.08)", marginTop: "3rem" }}>
@@ -507,10 +523,10 @@ function MarketplaceSection() {
           <span style={{ width: 16, height: 1, background: "#4ade80", display: "inline-block" }} /> Marketplace
         </div>
         <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(3rem,5vw,5.5rem)", lineHeight: 0.92, color: "#f5f8f5", marginBottom: "1rem" }}>
-          Where <span style={{ color: "#4ade80" }}>AI Companies</span><br />Are the Product.
+          Where <span style={{ color: "#4ade80" }}>AI startups</span><br />get funded.
         </h2>
         <p style={{ fontSize: "0.8125rem", fontWeight: 300, color: "#6b756b", lineHeight: 1.8, maxWidth: 460, marginBottom: "3.5rem" }}>
-          Stake in AI-built startups. Track real-time performance. Earn automated profit distributions.
+          Discover project listings with funding progress and investor lists. Back with SOL. View your portfolio.
         </p>
       </div>
 
@@ -519,9 +535,9 @@ function MarketplaceSection() {
           <div>
             <div style={{ fontSize: "0.68rem", color: "#6b756b", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.5rem" }}>Platform Features</div>
             {[
-              { icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg>, title: "Stake in AI-Built Startups", desc: "Browse active AI ventures, review live metrics, and take ownership positions in seconds." },
-              { icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>, title: "Track Real-Time Performance", desc: "Live dashboards surface revenue, growth rates, and agent activity for every company on the platform." },
-              { icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><line x1={12} y1={1} x2={12} y2={23} /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>, title: "Earn Automated Distributions", desc: "Smart contracts execute profit-sharing automatically — no manual claims, no middlemen, no delays." },
+              { icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg>, title: "List & discover startups", desc: "Submit your idea or browse campaigns. Funding progress and transparent investor lists on every project." },
+              { icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>, title: "Funding progress", desc: "See how much each project has raised toward its $20,000 target. Clear, live metrics for backers." },
+              { icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><line x1={12} y1={1} x2={12} y2={23} /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>, title: "Invest with SOL", desc: "Connect your wallet, send SOL to back a project. Stake is calculated and recorded — simple and resilient." },
             ].map((feat, i) => (
               <div key={i} style={{ display: "flex", gap: 14, padding: "1.25rem 0", borderBottom: "1px solid rgba(255,255,255,0.05)", borderTop: i === 0 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
                 <div style={{ width: 30, height: 30, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>{feat.icon}</div>
@@ -541,11 +557,11 @@ function MarketplaceSection() {
                 </div>
               </div>
               {[
-                { n: "Total Ventures", v: "24", d: "+3 this wk" },
-                { n: "Combined ARR", v: "$4.2M", d: "↑38%" },
-                { n: "Avg Monthly Growth", v: "41.2%", d: null },
-                { n: "Distributions Paid", v: "$184k", d: "this mo." },
-                { n: "Active AI Agents", v: "1,240", d: "running" },
+                { n: "Live campaigns", v: "—", d: "growing" },
+                { n: "Target per project", v: "$20k", d: "fixed" },
+                { n: "Payment", v: "SOL", d: null },
+                { n: "Backers", v: "—", d: "transparent" },
+                { n: "Founders", v: "Students & first-time", d: null },
               ].map((row) => (
                 <div key={row.n} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
                   <div style={{ fontSize: "0.72rem", color: "#6b756b" }}>{row.n}</div>
@@ -572,20 +588,21 @@ function VisionSection() {
     <section id="vision" className="vision-section" style={{ position: "relative", zIndex: 1, borderTop: "1px solid rgba(255,255,255,0.08)", padding: "8rem 48px", textAlign: "center", maxWidth: 1380, margin: "0 auto", fontFamily: "'IBM Plex Mono', monospace" }}>
       <div className="vis-kicker reveal" style={{ fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#4ade80", marginBottom: "1.75rem", display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
         <span style={{ width: 24, height: 1, background: "#4ade80", display: "inline-block" }} />
-        The Paradigm Shift
+        The mission
         <span style={{ width: 24, height: 1, background: "#4ade80", display: "inline-block" }} />
       </div>
       <h2 className="reveal d1" style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(3rem,7.5vw,8rem)", lineHeight: 0.9, letterSpacing: "0.02em", color: "#f5f8f5", marginBottom: "2rem", position: "relative", zIndex: 1 }}>
-        From Human Companies<br /><span style={{ color: "#4ade80" }}>→ Autonomous Economies</span>
+        Crowdfunding for new age startups.
       </h2>
       <p className="reveal d2" style={{ fontSize: "0.8125rem", fontWeight: 300, color: "#6b756b", maxWidth: 460, margin: "0 auto", lineHeight: 1.8 }}>
-        We are not building better tools for founders. We are replacing the need for founders entirely — and democratizing ownership of what comes next.
+        We help students and first-time founders list ideas and raise a fixed $20,000 target from early backers — with Solana, transparent progress and clear flows.
       </p>
     </section>
   );
 }
 
 function CTASection() {
+  const { user } = useAuth();
   return (
     <section id="cta" style={{ position: "relative", zIndex: 1, borderTop: "1px solid rgba(255,255,255,0.08)", padding: "6rem 48px", maxWidth: 1380, margin: "0 auto", fontFamily: "'IBM Plex Mono', monospace" }}>
       <div className="cta-box reveal" style={{ border: "1px solid rgba(255,255,255,0.08)", background: "#232723", padding: "4.5rem", display: "grid", gridTemplateColumns: "1fr 400px", gap: "4rem", alignItems: "center", position: "relative", overflow: "hidden" }}>
@@ -594,19 +611,26 @@ function CTASection() {
             <span style={{ width: 16, height: 1, background: "#4ade80", display: "inline-block" }} /> Early Access
           </div>
           <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(2.5rem,4.5vw,4.75rem)", lineHeight: 0.92, color: "#f5f8f5", marginBottom: "0.75rem" }}>
-            Own a Share in<br /><span style={{ color: "#4ade80" }}>AI-Built Startups</span>
+            List your idea or<br /><span style={{ color: "#4ade80" }}>back a founder.</span>
           </h2>
           <p style={{ fontSize: "0.8rem", fontWeight: 300, color: "#6b756b", lineHeight: 1.75 }}>
-            Join the first wave of investors in the autonomous startup economy. Stakes are limited.
+            Join as a founder to submit your AI startup, or as a backer to invest with SOL. $20k target per project.
           </p>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          <a href="/signup" className="cta-btn-green" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", background: "#4ade80", border: "1px solid #4ade80", borderRadius: 3, color: "#0d1a10", fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.875rem", fontWeight: 600, textDecoration: "none", cursor: "pointer", transition: "all 0.18s", letterSpacing: "0.02em", textTransform: "uppercase" }}>
-            Join Early Access
-            <ArrowRight size={15} strokeWidth={2.5} />
-          </a>
+          {user ? (
+            <Link to="/app/startups" className="cta-btn-green" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", background: "#4ade80", border: "1px solid #4ade80", borderRadius: 3, color: "#0d1a10", fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.875rem", fontWeight: 600, textDecoration: "none", cursor: "pointer", transition: "all 0.18s", letterSpacing: "0.02em", textTransform: "uppercase" }}>
+              Get started
+              <ArrowRight size={15} strokeWidth={2.5} />
+            </Link>
+          ) : (
+            <Link to="/signup" className="cta-btn-green" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", background: "#4ade80", border: "1px solid #4ade80", borderRadius: 3, color: "#0d1a10", fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.875rem", fontWeight: 600, textDecoration: "none", cursor: "pointer", transition: "all 0.18s", letterSpacing: "0.02em", textTransform: "uppercase" }}>
+              Get started
+              <ArrowRight size={15} strokeWidth={2.5} />
+            </Link>
+          )}
           <div style={{ fontSize: "0.68rem", color: "#4a524a", textAlign: "center", letterSpacing: "0.04em" }}>
-            // No management required. AI handles everything.
+            // Clear validation, wallet connect, loading states.
           </div>
         </div>
       </div>

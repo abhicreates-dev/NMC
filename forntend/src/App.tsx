@@ -20,7 +20,6 @@ import { Startups } from "./pages/Startups";
 import { StartupDetail } from "./pages/StartupDetail";
 import { Build } from "./pages/Build";
 import { Portfolio } from "./pages/Portfolio";
-import { ProjectDev } from "./pages/ProjectDev";
 import Landing from "./pages/Landing";
 
 const SOLANA_RPC = import.meta.env.VITE_SOLANA_RPC ?? "https://api.devnet.solana.com";
@@ -45,11 +44,12 @@ function App() {
           <AuthProvider>
             <BrowserRouter>
               <Routes>
+                <Route path="/" element={<Landing />} />
                 <Route path="/landing" element={<Landing />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/" element={<Layout />}>
-                  <Route index element={<Navigate to="/startups" replace />} />
+                <Route path="/app" element={<Layout />}>
+                  <Route index element={<Navigate to="/app/startups" replace />} />
                   <Route path="startups" element={<Startups />} />
                   <Route path="startup/:id" element={<StartupDetail />} />
                   <Route
@@ -68,16 +68,8 @@ function App() {
                       </ProtectedRoute>
                     }
                   />
-                  <Route
-                    path="chat/:id"
-                    element={
-                      <ProtectedRoute>
-                        <ProjectDev />
-                      </ProtectedRoute>
-                    }
-                  />
                 </Route>
-                <Route path="*" element={<Navigate to="/startups" replace />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </BrowserRouter>
           </AuthProvider>

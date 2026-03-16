@@ -1,33 +1,17 @@
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useAuth } from "../context/AuthContext";
-import { LayoutDashboard, PlusSquare, Cpu } from "lucide-react";
-import { useEffect, useState } from "react";
-import { startups as startupsApi } from "../lib/api";
-
-interface StartupItem {
-  id: string;
-  name: string;
-}
+import { LayoutDashboard, PlusSquare } from "lucide-react";
 
 export function Layout() {
   const { user, logout } = useAuth();
-  const location = useLocation();
-  const isChatRoute = location.pathname.startsWith("/chat/");
-  const [projects, setProjects] = useState<StartupItem[]>([]);
-
-  useEffect(() => {
-    if (!user) return;
-    startupsApi.list().then(({ data }) => setProjects(data)).catch(() => {});
-  }, [user]);
-
   const avatarInitials = user?.name ? user.name.charAt(0).toUpperCase() : '?';
 
   return (
     <div className="flex h-screen w-full bg-[#0a0a0a] text-slate-100 overflow-hidden font-sans">
       <aside className="w-64 border-r border-[#1a1a1a] bg-[#111] flex flex-col shrink-0">
         <div className="h-16 flex items-center px-4 border-b border-[#1a1a1a] shrink-0">
-          <Link to="/startups" className="text-lg font-bold text-slate-100 flex items-center gap-2">
+          <Link to="/app/startups" className="text-lg font-bold text-slate-100 flex items-center gap-2">
             <div className="w-8 h-8 bg-[#1b7f53] rounded-md flex items-center justify-center text-white">
               <span className="text-xl font-black italic">Z</span>
             </div>
@@ -40,7 +24,7 @@ export function Layout() {
             <div className="text-xs font-semibold text-slate-500 mb-2 px-3 tracking-wider uppercase">Overview</div>
             <nav className="flex flex-col gap-1">
               <NavLink
-                to="/build"
+                to="/app/build"
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${isActive ? 'bg-[#1b7f53]/10 text-[#1b7f53] font-medium' : 'text-slate-400 hover:bg-[#1a1a1a] hover:text-slate-200'}`
                 }
@@ -49,7 +33,7 @@ export function Layout() {
                 Build
               </NavLink>
               <NavLink
-                to="/startups"
+                to="/app/startups"
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${isActive ? 'bg-[#1b7f53]/10 text-[#1b7f53] font-medium' : 'text-slate-400 hover:bg-[#1a1a1a] hover:text-slate-200'}`
                 }
@@ -59,34 +43,6 @@ export function Layout() {
               </NavLink>
             </nav>
           </div>
-
-          {user && (
-            <div>
-              <div className="text-xs font-semibold text-slate-500 mb-2 px-3 tracking-wider uppercase flex items-center gap-2">
-                <Cpu size={12} />
-                Project Dev
-              </div>
-              <nav className="flex flex-col gap-1">
-                {projects.length === 0 ? (
-                  <p className="px-3 text-xs text-slate-600 italic">No projects yet</p>
-                ) : (
-                  projects.map((p) => (
-                    <NavLink
-                      key={p.id}
-                      to={`/chat/${p.id}`}
-                      className={({ isActive }) =>
-                        `flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors truncate ${isActive ? 'bg-violet-500/10 text-violet-400 font-medium' : 'text-slate-400 hover:bg-[#1a1a1a] hover:text-slate-200'}`
-                      }
-                      title={p.name}
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0" />
-                      <span className="truncate">{p.name}</span>
-                    </NavLink>
-                  ))
-                )}
-              </nav>
-            </div>
-          )}
         </div>
       </aside>
 
@@ -97,7 +53,7 @@ export function Layout() {
             {/* Wallet & Auth logic */}
             {user ? (
               <>
-                <Link to="/portfolio" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">
+                <Link to="/app/portfolio" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">
                   Portfolio
                 </Link>
                 <WalletMultiButton
@@ -138,14 +94,10 @@ export function Layout() {
           </div>
         </nav>
 
-        <main className={`flex-1 bg-[#0a0a0a] ${isChatRoute ? 'overflow-hidden flex flex-col' : 'overflow-y-auto p-6 lg:p-10'}`}>
-          {isChatRoute ? (
+        <main className="flex-1 bg-[#0a0a0a] overflow-y-auto p-6 lg:p-10">
+          <div className="mx-auto max-w-6xl">
             <Outlet />
-          ) : (
-            <div className="mx-auto max-w-6xl">
-              <Outlet />
-            </div>
-          )}
+          </div>
         </main>
       </div>
     </div>

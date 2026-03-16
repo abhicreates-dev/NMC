@@ -213,7 +213,7 @@ export function StartupDetail() {
     return (
       <div>
         <p className="text-red-400">{error ?? "Not found"}</p>
-        <Link to="/startups" className="mt-4 inline-block text-emerald-400 hover:underline">
+        <Link to="/app/startups" className="mt-4 inline-block text-emerald-400 hover:underline">
           ← Back to startups
         </Link>
       </div>
@@ -223,7 +223,7 @@ export function StartupDetail() {
   return (
     <div>
       <Link
-        to="/startups"
+        to="/app/startups"
         className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors"
       >
         ← Back to startups

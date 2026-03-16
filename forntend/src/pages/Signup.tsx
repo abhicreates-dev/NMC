@@ -62,7 +62,7 @@ export function Signup() {
     try {
       const { data } = await auth.signup({ name: trimmedName, email: trimmedEmail, password: trimmedPassword, walletAddress: trimmedWallet });
       login(data.token, data.user);
-      navigate("/startups");
+      navigate("/app/startups");
     } catch (err: unknown) {
       const d =
         err && typeof err === "object" && "response" in err

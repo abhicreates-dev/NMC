@@ -62,7 +62,7 @@ export function Build() {
         xUrl: xUrl.trim() || undefined,
         githubUrl: githubUrl.trim() || undefined,
       });
-      navigate("/startups");
+      navigate("/app/startups");
     } catch (err: unknown) {
       const data =
         err && typeof err === "object" && "response" in err

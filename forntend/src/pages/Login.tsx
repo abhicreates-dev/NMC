@@ -23,7 +23,7 @@ export function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = (location.state as { from?: { pathname: string } })?.from?.pathname ?? "/startups";
+  const from = (location.state as { from?: { pathname: string } })?.from?.pathname ?? "/app/startups";
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
