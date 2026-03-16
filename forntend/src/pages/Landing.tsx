@@ -22,16 +22,11 @@ const FontLoader = () => (
       overflow-x:hidden;
     }
 
-    #root-bg::before {
-      content:'';
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:0;
+    .root-bg {
       background-image:
         linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size:80px 80px;
+      background-size:90px 90px;
     }
 
     @keyframes cursor-blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
@@ -227,7 +222,7 @@ function HeroSection() {
     <div style={{ position: "relative", zIndex: 1, maxWidth: 1380, margin: "0 auto", padding: "0 48px", fontFamily: "'IBM Plex Mono', monospace" }}>
       <div style={{ paddingTop: 52, paddingBottom: 32 }}>
         <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(4.5rem, 8.5vw, 9.5rem)", lineHeight: 0.9, letterSpacing: "0.01em", color: "#f5f8f5", maxWidth: 820 }}>
-          <span style={{ color: "#4ade80" }}>Startups</span> that build 
+          <span style={{ color: "#4ade80" }}>Startups</span> that build
           <span style={{ color: "#4ade80" }}> themselves.</span>
         </h1>
       </div>
@@ -263,22 +258,22 @@ function HeroSection() {
               <div style={{ width: 9, height: 9, borderRadius: "50%", background: "#febc2e" }} />
               <div style={{ width: 9, height: 9, borderRadius: "50%", background: "#28c840" }} />
               <div style={{ flex: 1, margin: "0 10px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 4, padding: "3px 10px", fontSize: "0.6rem", color: "#4a524a", letterSpacing: "0.03em" }}>nomancompany.ai/marketplace</div>
-              <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#4a524a" strokeWidth={2}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1={10} y1={14} x2={21} y2={3}/></svg>
+              <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#4a524a" strokeWidth={2}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1={10} y1={14} x2={21} y2={3} /></svg>
             </div>
             <div style={{ flex: 1, background: "linear-gradient(135deg,#2d4a3e 0%,#3a5c48 15%,#4a6e54 25%,#5a8060 35%,#6a4a3a 45%,#7a5a4a 55%,#5a4a6a 65%,#4a3a5a 75%,#3a4a5a 85%,#2a3a4a 100%)", position: "relative", overflow: "hidden" }}>
               <svg width="100%" height="100%" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0 }}>
                 <defs>
-                  <radialGradient id="g1" cx="30%" cy="40%"><stop offset="0%" stopColor="#4a8c6a" stopOpacity="0.8"/><stop offset="100%" stopColor="transparent"/></radialGradient>
-                  <radialGradient id="g2" cx="70%" cy="60%"><stop offset="0%" stopColor="#6a4a8c" stopOpacity="0.6"/><stop offset="100%" stopColor="transparent"/></radialGradient>
-                  <radialGradient id="g3" cx="50%" cy="20%"><stop offset="0%" stopColor="#4ade80" stopOpacity="0.15"/><stop offset="100%" stopColor="transparent"/></radialGradient>
+                  <radialGradient id="g1" cx="30%" cy="40%"><stop offset="0%" stopColor="#4a8c6a" stopOpacity="0.8" /><stop offset="100%" stopColor="transparent" /></radialGradient>
+                  <radialGradient id="g2" cx="70%" cy="60%"><stop offset="0%" stopColor="#6a4a8c" stopOpacity="0.6" /><stop offset="100%" stopColor="transparent" /></radialGradient>
+                  <radialGradient id="g3" cx="50%" cy="20%"><stop offset="0%" stopColor="#4ade80" stopOpacity="0.15" /><stop offset="100%" stopColor="transparent" /></radialGradient>
                 </defs>
-                <rect width="100%" height="100%" fill="#1a2e22"/>
-                <rect width="100%" height="100%" fill="url(#g1)"/>
-                <rect width="100%" height="100%" fill="url(#g2)"/>
-                <rect width="100%" height="100%" fill="url(#g3)"/>
-                <line x1={0} y1={50} x2={600} y2={80} stroke="rgba(74,222,128,0.06)" strokeWidth={1}/>
-                <line x1={0} y1={100} x2={600} y2={130} stroke="rgba(74,222,128,0.04)" strokeWidth={1}/>
-                <line x1={0} y1={150} x2={600} y2={170} stroke="rgba(255,255,255,0.03)" strokeWidth={1}/>
+                <rect width="100%" height="100%" fill="#1a2e22" />
+                <rect width="100%" height="100%" fill="url(#g1)" />
+                <rect width="100%" height="100%" fill="url(#g2)" />
+                <rect width="100%" height="100%" fill="url(#g3)" />
+                <line x1={0} y1={50} x2={600} y2={80} stroke="rgba(74,222,128,0.06)" strokeWidth={1} />
+                <line x1={0} y1={100} x2={600} y2={130} stroke="rgba(74,222,128,0.04)" strokeWidth={1} />
+                <line x1={0} y1={150} x2={600} y2={170} stroke="rgba(255,255,255,0.03)" strokeWidth={1} />
               </svg>
             </div>
           </div>
@@ -291,12 +286,12 @@ function HeroSection() {
                 <div style={{ width: 9, height: 9, borderRadius: "50%", background: "#28c840" }} />
               </div>
               <div style={{ fontSize: "0.7rem", color: "#e8ece8", fontWeight: 500, display: "flex", alignItems: "center", gap: 5, marginLeft: 8 }}>
-                <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><circle cx={12} cy={12} r={3}/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg>
+                <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><circle cx={12} cy={12} r={3} /><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4" /></svg>
                 AI Agent Console
               </div>
               <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
-                <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#4a524a" strokeWidth={2}><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1={6} y1={1} x2={6} y2={4}/><line x1={10} y1={1} x2={10} y2={4}/><line x1={14} y1={1} x2={14} y2={4}/></svg>
-                <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#4a524a" strokeWidth={2}><line x1={12} y1={5} x2={12} y2={19}/><line x1={5} y1={12} x2={19} y2={12}/></svg>
+                <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#4a524a" strokeWidth={2}><path d="M18 8h1a4 4 0 0 1 0 8h-1" /><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" /><line x1={6} y1={1} x2={6} y2={4} /><line x1={10} y1={1} x2={10} y2={4} /><line x1={14} y1={1} x2={14} y2={4} /></svg>
+                <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#4a524a" strokeWidth={2}><line x1={12} y1={5} x2={12} y2={19} /><line x1={5} y1={12} x2={19} y2={12} /></svg>
               </div>
             </div>
             <div style={{ display: "flex", gap: 2, padding: "0 10px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
@@ -305,7 +300,7 @@ function HeroSection() {
               ))}
             </div>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "0.62rem", color: "#6b756b", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 4, padding: "3px 8px", background: "rgba(255,255,255,0.04)", margin: "6px 10px", width: "fit-content" }}>
-              <svg width={9} height={9} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}><line x1={12} y1={5} x2={12} y2={19}/><line x1={5} y1={12} x2={19} y2={12}/></svg>
+              <svg width={9} height={9} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}><line x1={12} y1={5} x2={12} y2={19} /><line x1={5} y1={12} x2={19} y2={12} /></svg>
               New Task
             </div>
             <div style={{ padding: "0 10px 10px", display: "flex", flexDirection: "column", gap: 5 }}>
@@ -322,12 +317,12 @@ function HeroSection() {
 
           <div style={{ position: "absolute", bottom: 175, left: "5%", right: "5%", background: "rgba(26,29,26,0.9)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 8, padding: "12px 14px", zIndex: 4, backdropFilter: "blur(8px)" }}>
             <div style={{ fontSize: "0.62rem", color: "#4a524a", marginBottom: 4, display: "flex", alignItems: "center", gap: 5 }}>
-              <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><circle cx={12} cy={12} r={10}/><polyline points="12 6 12 12 16 14"/></svg>
+              <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><circle cx={12} cy={12} r={10} /><polyline points="12 6 12 12 16 14" /></svg>
               <span style={{ color: "#6b756b" }}>Thought for 1 second</span>
             </div>
             <p style={{ fontSize: "0.65rem", color: "#6b756b", lineHeight: 1.6, marginBottom: 6 }}>I need to validate the market first. Let me run demand analysis and generate a business summary.</p>
             <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 4, padding: "5px 10px", fontSize: "0.62rem", color: "#4ade80", display: "flex", alignItems: "center", gap: 5 }}>
-              <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><polyline points="4 17 10 11 4 5"/><line x1={12} y1={19} x2={20} y2={19}/></svg>
+              <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><polyline points="4 17 10 11 4 5" /><line x1={12} y1={19} x2={20} y2={19} /></svg>
               cd /workspace/no-man-co &amp;&amp; agent run --mode=ceo --task=validate
             </div>
           </div>
@@ -341,27 +336,27 @@ function HeroSection() {
               <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 {["Agent", "Auto"].map((label, i) => (
                   <div key={label} style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "0.68rem", color: "#e8ece8", background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 100, padding: "3px 10px", cursor: "pointer", whiteSpace: "nowrap" }}>
-                    {i === 0 && <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>}
+                    {i === 0 && <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" /></svg>}
                     {label} <ChevDown />
                   </div>
                 ))}
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 {[
-                  <svg key="mail" width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
-                  <svg key="globe" width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><circle cx={12} cy={12} r={10}/><line x1={2} y1={12} x2={22} y2={12}/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,
-                  <svg key="img" width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><rect x={3} y={3} width={18} height={18} rx={2}/><circle cx={8.5} cy={8.5} r={1.5}/><polyline points="21 15 16 10 5 21"/></svg>
+                  <svg key="mail" width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>,
+                  <svg key="globe" width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><circle cx={12} cy={12} r={10} /><line x1={2} y1={12} x2={22} y2={12} /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>,
+                  <svg key="img" width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><rect x={3} y={3} width={18} height={18} rx={2} /><circle cx={8.5} cy={8.5} r={1.5} /><polyline points="21 15 16 10 5 21" /></svg>
                 ].map((icon, i) => (
                   <span key={i} style={{ color: "#6b756b", cursor: "pointer", display: "flex", alignItems: "center", transition: "color 0.15s" }}>{icon}</span>
                 ))}
                 <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#4a524a", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
-                  <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2}><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1={12} y1={19} x2={12} y2={23}/><line x1={8} y1={23} x2={16} y2={23}/></svg>
+                  <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2}><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1={12} y1={19} x2={12} y2={23} /><line x1={8} y1={23} x2={16} y2={23} /></svg>
                 </div>
               </div>
             </div>
             <div style={{ padding: "6px 14px 8px", display: "flex", alignItems: "center", gap: 5 }}>
               <div style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "0.65rem", color: "#6b756b", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 4, padding: "2px 8px", background: "rgba(255,255,255,0.03)", cursor: "pointer" }}>
-                <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x={2} y={3} width={20} height={14} rx={2}/><line x1={8} y1={21} x2={16} y2={21}/><line x1={12} y1={17} x2={12} y2={21}/></svg>
+                <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x={2} y={3} width={20} height={14} rx={2} /><line x1={8} y1={21} x2={16} y2={21} /><line x1={12} y1={17} x2={12} y2={21} /></svg>
                 Local <ChevDown />
               </div>
             </div>
@@ -429,10 +424,10 @@ function TrustSection() {
 
 function FeaturesSection() {
   const features = [
-    { num: "01 / Strategy", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>, title: "AI CEO Decision Engine", desc: "A sovereign reasoning model that formulates strategy, allocates resources, and makes high-stakes decisions autonomously — with full accountability trails.", badge: "⬡ Always Active" },
-    { num: "02 / Engineering", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><rect x={2} y={3} width={20} height={14} rx={2}/><path d="M8 21h8M12 17v4"/></svg>, title: "Autonomous Product Development", desc: "From architecture to deployment, AI developer agents design, code, test, and iterate on digital products with zero human input — shipping continuously.", badge: "⬡ Self-Deploying" },
-    { num: "03 / Growth", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>, title: "Self-Optimizing Marketing Agents", desc: "Growth agents run experiments across channels, analyze real-time signals, and rewrite campaigns — compounding traction without a human growth team.", badge: "⬡ Growth Loop" },
-    { num: "04 / Capital", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><line x1={12} y1={1} x2={12} y2={23}/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>, title: "Community Investment Marketplace", desc: "Stake in AI-built ventures, track real-time KPIs, and receive automated profit distributions — ownership without operations.", badge: "⬡ Earn Passively" },
+    { num: "01 / Strategy", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5M2 12l10 5 10-5" /></svg>, title: "AI CEO Decision Engine", desc: "A sovereign reasoning model that formulates strategy, allocates resources, and makes high-stakes decisions autonomously — with full accountability trails.", badge: "⬡ Always Active" },
+    { num: "02 / Engineering", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><rect x={2} y={3} width={20} height={14} rx={2} /><path d="M8 21h8M12 17v4" /></svg>, title: "Autonomous Product Development", desc: "From architecture to deployment, AI developer agents design, code, test, and iterate on digital products with zero human input — shipping continuously.", badge: "⬡ Self-Deploying" },
+    { num: "03 / Growth", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>, title: "Self-Optimizing Marketing Agents", desc: "Growth agents run experiments across channels, analyze real-time signals, and rewrite campaigns — compounding traction without a human growth team.", badge: "⬡ Growth Loop" },
+    { num: "04 / Capital", icon: <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={1.8}><line x1={12} y1={1} x2={12} y2={23} /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>, title: "Community Investment Marketplace", desc: "Stake in AI-built ventures, track real-time KPIs, and receive automated profit distributions — ownership without operations.", badge: "⬡ Earn Passively" },
   ];
 
   return (
@@ -492,7 +487,7 @@ function HowItWorksSection() {
             <p style={{ fontSize: "0.75rem", fontWeight: 300, color: "#6b756b", lineHeight: 1.7 }}>{s.p}</p>
             {i < 3 && (
               <div style={{ position: "absolute", top: 24, right: -8, width: 14, height: 14, background: "#1a1d1a", border: "1px solid #4ade80", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
-                <svg width={7} height={7} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <svg width={7} height={7} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}><path d="M5 12h14M12 5l7 7-7 7" /></svg>
               </div>
             )}
           </div>
@@ -524,9 +519,9 @@ function MarketplaceSection() {
           <div>
             <div style={{ fontSize: "0.68rem", color: "#6b756b", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.5rem" }}>Platform Features</div>
             {[
-              { icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>, title: "Stake in AI-Built Startups", desc: "Browse active AI ventures, review live metrics, and take ownership positions in seconds." },
-              { icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>, title: "Track Real-Time Performance", desc: "Live dashboards surface revenue, growth rates, and agent activity for every company on the platform." },
-              { icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><line x1={12} y1={1} x2={12} y2={23}/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>, title: "Earn Automated Distributions", desc: "Smart contracts execute profit-sharing automatically — no manual claims, no middlemen, no delays." },
+              { icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg>, title: "Stake in AI-Built Startups", desc: "Browse active AI ventures, review live metrics, and take ownership positions in seconds." },
+              { icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>, title: "Track Real-Time Performance", desc: "Live dashboards surface revenue, growth rates, and agent activity for every company on the platform." },
+              { icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth={2}><line x1={12} y1={1} x2={12} y2={23} /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>, title: "Earn Automated Distributions", desc: "Smart contracts execute profit-sharing automatically — no manual claims, no middlemen, no delays." },
             ].map((feat, i) => (
               <div key={i} style={{ display: "flex", gap: 14, padding: "1.25rem 0", borderBottom: "1px solid rgba(255,255,255,0.05)", borderTop: i === 0 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
                 <div style={{ width: 30, height: 30, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>{feat.icon}</div>
@@ -645,10 +640,12 @@ export default function Landing() {
   return (
     <>
       <FontLoader />
-      <div id="root-bg" style={{ background: "#1a1d1a", minHeight: "100vh" }}>
-        <AnnounceBar />
-        <Navbar />
-        <HeroSection />
+      <div id="root-" style={{ background: "#1a1d1a", minHeight: "100vh" }}>
+        <div className="root-bg">
+          <AnnounceBar />
+          <Navbar />
+          <HeroSection />
+        </div>
         <TrustSection />
         <FeaturesSection />
         <HowItWorksSection />

@@ -29,9 +29,9 @@ export function Layout() {
         <div className="h-16 flex items-center px-4 border-b border-[#1a1a1a] shrink-0">
           <Link to="/startups" className="text-lg font-bold text-slate-100 flex items-center gap-2">
             <div className="w-8 h-8 bg-[#1b7f53] rounded-md flex items-center justify-center text-white">
-              <span className="text-xl font-black italic">T</span>
+              <span className="text-xl font-black italic">Z</span>
             </div>
-            TestSprite
+            ZMC
           </Link>
         </div>
 

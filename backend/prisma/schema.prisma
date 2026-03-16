@@ -23,14 +23,19 @@ model User {
 }
 
 model Startup {
-  id            String   @id @default(uuid())
+  id            String    @id @default(uuid())
   name          String
   description   String
+  categories    String[]  @default([]) // tags, max 4 (e.g. AI, SaaS, FinTech)
   founderId     String
-  valuation     Int      @default(20000)
+  valuation     Int       @default(20000)
   fundingOpenAt DateTime
-  totalRaised   Float    @default(0)
-  createdAt     DateTime @default(now())
+  totalRaised   Float     @default(0)
+  createdAt     DateTime  @default(now())
+  // founder links (optional)
+  linkedinUrl   String?
+  xUrl          String?
+  githubUrl     String?
 
   founder     User         @relation(fields: [founderId], references: [id])
   investments Investment[]

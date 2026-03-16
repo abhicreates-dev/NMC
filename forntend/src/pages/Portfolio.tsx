@@ -46,7 +46,7 @@ export function Portfolio() {
   return (
     <div>
       <h1 className="mb-6 text-2xl font-bold">Your portfolio</h1>
-      <div className="mb-6 flex gap-6 rounded-lg border border-slate-800 bg-slate-900/50 p-4">
+      <div className="mb-6 flex gap-6 rounded-lg border border-white/5 bg-[#0c0c0c] p-4">
         <div>
           <p className="text-sm text-slate-500">Total invested</p>
           <p className="text-xl font-semibold text-emerald-400">
@@ -65,7 +65,7 @@ export function Portfolio() {
           <Link
             key={inv.id}
             to={`/startup/${inv.startup.id}`}
-            className="block rounded-xl border border-slate-800 bg-slate-900/50 p-4 transition hover:border-slate-700"
+            className="block rounded-xl border border-white/5 bg-[#0c0c0c] p-4 transition hover:border-white/10"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -76,7 +76,7 @@ export function Portfolio() {
               </div>
               <div className="text-right">
                 <p className="text-emerald-400">{inv.amountSol} SOL</p>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-slate-500 truncate">
                   {(inv.stake * 100).toFixed(2)}% stake
                 </p>
               </div>

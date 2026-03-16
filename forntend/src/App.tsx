@@ -46,12 +46,12 @@ function App() {
             <BrowserRouter>
               <Routes>
                 <Route path="/landing" element={<Landing />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/" element={<Layout />}>
                   <Route index element={<Navigate to="/startups" replace />} />
                   <Route path="startups" element={<Startups />} />
                   <Route path="startup/:id" element={<StartupDetail />} />
-                  <Route path="signup" element={<Signup />} />
-                  <Route path="login" element={<Login />} />
                   <Route
                     path="build"
                     element={

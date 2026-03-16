@@ -37,8 +37,14 @@ export const auth = {
 export const startups = {
   list: () => api.get("/startups"),
   get: (id: string) => api.get(`/startups/${id}`),
-  create: (data: { name: string; description: string }) =>
-    api.post("/startups", data),
+  create: (data: {
+    name: string;
+    description: string;
+    categories: string[];
+    linkedinUrl?: string;
+    xUrl?: string;
+    githubUrl?: string;
+  }) => api.post("/startups", data),
 };
 
 export const invest = {
